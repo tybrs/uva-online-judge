@@ -24,7 +24,7 @@ def print_world(world):
         if world[stack]:
             line += ' ' + ' '.join(str(x) for x in world[stack])
         print(line)
-        
+
 def takeuntil(predicate, iterable):
     """Generator function that yields each item of an iterable 
     until some predicate condition holds including the first item
@@ -38,7 +38,7 @@ def takeuntil(predicate, iterable):
             yield x
         if predicate(x):
             break_condition = True
-            
+
 def takeafter(predicate, iterable):
     """Generator function that yields each item of an iterable 
     after some predicate condition holds not including the first item
@@ -105,7 +105,7 @@ def construct_move(n, actions):
 
         if where_a == where_b:
             return None
-        
+
         if prep == 'onto':
             to_move = takeafter(lambda x: x == b, stack_b)
             to_stay = takeuntil(lambda x: x == b, stack_b)
