@@ -56,6 +56,7 @@ def construct_move(n, actions):
     print the world state after performing all actions.
     """
     world = {i: [i] for i in range(n)}
+
     def move(a, b, prep="over"):
         """where ``a`` and ``b`` are block numbers, puts block ``a``
         onto block ``b`` after returning any blocks that are stacked
@@ -121,7 +122,7 @@ def construct_move(n, actions):
     for action in actions:
         eval(action)
     
-    print_world(world)
+    return world
 
 def main():
     """Main function to collect and parse action statements and
@@ -137,8 +138,10 @@ def main():
 
     n = int(lines.pop(0))
     actions = [parse_cmd(line) for line in lines]
-    construct_move(n, actions)
-    
+    world = construct_move(n, actions)
+    print_world(world)
+
+
 if __name__ == '__main__':
     main()
     exit(0)
