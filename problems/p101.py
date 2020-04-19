@@ -74,12 +74,14 @@ def construct_move(n, actions):
 
         to_move = list(takeafter(lambda x: x == a, stack_a))
         to_stay = list(takeuntil(lambda x: x == a, stack_a))
+        # move blocks home
         list(map(lambda x: world[x].append(x), to_move))
         world[where_a] = to_stay
 
         if prep == 'onto':
             to_move = list(takeafter(lambda x: x == b, stack_b))
             to_stay = list(takeuntil(lambda x: x == b, stack_b))
+            # move blocks home
             list(map(lambda x: world[x].append(x), to_move))
             world[where_b] = to_stay
 
@@ -104,10 +106,12 @@ def construct_move(n, actions):
             return None
         
         if prep == 'onto':
-            to_move = list(takeafter(lambda x: x == b, stack_b))
-            to_stay = list(takeuntil(lambda x: x == b, stack_b))
+            to_move = takeafter(lambda x: x == b, stack_b)
+            to_stay = takeuntil(lambda x: x == b, stack_b)
+            # move blocks home
             list(map(lambda x: world[x].append(x), to_move))
-            world[where_b] = to_stay
+            # set object block to state befor movement
+            world[where_b] = list(to_stay)
 
         world[where_b] += list(dropwhile(lambda x: x != a, stack_a))
         world[where_a] = list(takewhile(lambda x: x != a, stack_a))
