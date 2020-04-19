@@ -2,13 +2,18 @@ from collections import defaultdict
 from itertools import permutations
 import fileinput
 
-def group(lst, n):
-    for i in range(0, len(lst), n):
-        grp = lst[i:i + n]
+def group_ints(iterable, n):
+    """Generator function to yiled tuple grouping of
+    intergers of size ``n``
+    """
+    for i in range(0, len(iterable), n):
+        grp = iterable[i:i + n]
         if len(grp) == n:
             yield tuple(int(x) for x in grp)
 
 def compute_costs(bins):
+    """Calculate costs of movement over all possible worlds
+    """
     positions = {'B': 0, 'G': 1, 'C': 2}
     possible_worlds = sorted(permutations('BGC', 3))
     cost = defaultdict(lambda: 0)
@@ -20,12 +25,14 @@ def compute_costs(bins):
     return min(cost.items(), key=lambda d: d[1])
 
 def print_result(result):
+    """Print world state in online-judge solutioin format
+    """
     world, cost = result
     print(''.join(world), cost)
     
 def main():
     for line in fileinput.input():
-        bins = list(group(line.split(), 3))
+        bins = list(group_ints(line.split(), 3))
         print_result(compute_costs(bins))
 
 if __name__ == '__main__':
