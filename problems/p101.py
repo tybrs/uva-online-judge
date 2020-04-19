@@ -73,18 +73,18 @@ def construct_move(n, actions):
         if where_a == where_b:
             return None
 
-        to_move = list(takeafter(lambda x: x == a, stack_a))
-        to_stay = list(takeuntil(lambda x: x == a, stack_a))
+        to_move = takeafter(lambda x: x == a, stack_a)
+        to_stay = takeuntil(lambda x: x == a, stack_a)
         # move blocks home
         list(map(lambda x: world[x].append(x), to_move))
-        world[where_a] = to_stay
+        world[where_a] = list(to_stay)
 
         if prep == 'onto':
-            to_move = list(takeafter(lambda x: x == b, stack_b))
-            to_stay = list(takeuntil(lambda x: x == b, stack_b))
+            to_move = takeafter(lambda x: x == b, stack_b)
+            to_stay = takeuntil(lambda x: x == b, stack_b)
             # move blocks home
             list(map(lambda x: world[x].append(x), to_move))
-            world[where_b] = to_stay
+            world[where_b] = list(to_stay)
 
         world[where_b].append(world[where_a].pop(-1))
         return None
