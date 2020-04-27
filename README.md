@@ -1,4 +1,4 @@
-# UVa Online Judge Functional Python Solutions
+# Functional Python Solutions to UVa Online Judge
 
 The UVa Online Judge is an online automated judge for programming problems hosted by the University of Valladolid. It was created by mathematician Miguel Ángel Revilla for teaching algorithms. This repository is dedicated to solving OJ problem sets using Python within the "functional" paradigm.
 
